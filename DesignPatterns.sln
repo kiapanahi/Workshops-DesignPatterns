@@ -7,6 +7,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{BAC90A9A-7C4
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Strategy", "src\Strategy\Strategy.csproj", "{258173E0-5720-4EC1-B44F-BCEA35696894}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Observer", "src\Observer\Observer.csproj", "{AF89688F-DD5F-4B3C-8797-FC5139C25298}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -32,8 +34,21 @@ Global
 		{258173E0-5720-4EC1-B44F-BCEA35696894}.Release|x64.Build.0 = Release|Any CPU
 		{258173E0-5720-4EC1-B44F-BCEA35696894}.Release|x86.ActiveCfg = Release|Any CPU
 		{258173E0-5720-4EC1-B44F-BCEA35696894}.Release|x86.Build.0 = Release|Any CPU
+		{AF89688F-DD5F-4B3C-8797-FC5139C25298}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AF89688F-DD5F-4B3C-8797-FC5139C25298}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AF89688F-DD5F-4B3C-8797-FC5139C25298}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{AF89688F-DD5F-4B3C-8797-FC5139C25298}.Debug|x64.Build.0 = Debug|Any CPU
+		{AF89688F-DD5F-4B3C-8797-FC5139C25298}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{AF89688F-DD5F-4B3C-8797-FC5139C25298}.Debug|x86.Build.0 = Debug|Any CPU
+		{AF89688F-DD5F-4B3C-8797-FC5139C25298}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AF89688F-DD5F-4B3C-8797-FC5139C25298}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AF89688F-DD5F-4B3C-8797-FC5139C25298}.Release|x64.ActiveCfg = Release|Any CPU
+		{AF89688F-DD5F-4B3C-8797-FC5139C25298}.Release|x64.Build.0 = Release|Any CPU
+		{AF89688F-DD5F-4B3C-8797-FC5139C25298}.Release|x86.ActiveCfg = Release|Any CPU
+		{AF89688F-DD5F-4B3C-8797-FC5139C25298}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{258173E0-5720-4EC1-B44F-BCEA35696894} = {BAC90A9A-7C47-4C23-A545-D779DDA1BD8E}
+		{AF89688F-DD5F-4B3C-8797-FC5139C25298} = {BAC90A9A-7C47-4C23-A545-D779DDA1BD8E}
 	EndGlobalSection
 EndGlobal
