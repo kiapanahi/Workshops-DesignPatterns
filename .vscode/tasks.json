@@ -12,6 +12,15 @@
                 "reveal": "silent"
             },
             "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "Typescript - Build",
+            "type": "typescript",
+            "tsconfig": "src\\Observer\\tsconfig.json",
+            "option": "watch",
+            "problemMatcher": [
+                "$tsc-watch"
+            ]
         }
     ]
 }
