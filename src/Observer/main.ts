@@ -31,7 +31,7 @@ class TempratureObserver implements IObserver {
 
 class HumidityObserver implements IObserver {
     Act(data: WeatherStationData): void {
-        console.log(`${data.Date.toISOString()} - ${data.StationName}> \t humidity is ${data.Humidity}%`);
+        console.log(`${data.Date.toISOString()} - ${data.StationName}> \t humidity is ${data.Humidity} %`);
     }
 }
 
@@ -77,7 +77,8 @@ class WeatherStation implements IObservable {
         setInterval(() => {
             console.log(`Station ${this.StationName} reporting it's data`);
             this.NotifySubscribers();
-        }, 1000)
+        },
+            1000);
     }
 }
 //#endregion
@@ -93,6 +94,8 @@ class WeatherReporter {
 
         s1.StartWorking();
         s2.StartWorking();
+
+        setTimeout(() => { s2.Subscribe(new TempratureObserver()); }, 5000);
     }
 }
 
