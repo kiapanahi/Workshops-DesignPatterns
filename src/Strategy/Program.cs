@@ -19,7 +19,7 @@ namespace Strategy
 
             foreach (var i in Enumerable.Range(1, 10))
             {
-                service.ChargeCustomer($"charing constumer... {i}")
+                service.ChargeCustomer($"charing customer... {i}")
                 .GetAwaiter()
                 .GetResult();
             }
