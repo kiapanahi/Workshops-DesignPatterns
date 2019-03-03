@@ -81,4 +81,16 @@ namespace Decorator.Instagramock
         public double SizeOnDisk { get; set; }
     }
 
+    public class EmojiFilter : IPicture {
+        public List<string> Filters { get; set; }
+        public double SizeOnDisk { get; set; }
+
+        public EmojiFilter(IPicture picture)
+        {
+            Filters = picture.Filters.Union(new[] { "Smiley-Emoji" }).ToList();
+            SizeOnDisk = picture.SizeOnDisk + 40D;
+
+        }
+    }
+
 }
