@@ -2,9 +2,9 @@
 
 namespace Factory.Simple_Factory
 {
-    internal class SimpleFactory
+    internal static class SimpleFactory
     {
-        public Product CreateProduct(ProductCategory productCategory)
+        public static Product CreateProduct(ProductCategory productCategory)
         {
             Product product;
 

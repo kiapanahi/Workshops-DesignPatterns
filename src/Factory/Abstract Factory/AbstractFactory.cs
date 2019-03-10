@@ -17,6 +17,24 @@ namespace Factory.Abstract_Factory
             var p = _factory.CreateProduct();
             return p;
         }
+
+    }
+
+    internal class AbstractProductFactory2
+    {
+        private readonly ProductFactory _factory;
+
+        public AbstractProductFactory2(ProductFactory factory)
+        {
+            _factory = factory;
+        }
+
+        public Product CreateProductInstance()
+        {
+            var p = _factory.CreateProduct();
+            return p;
+        }
+
     }
 
     internal class InsuranceAbstractProductFactory : AbstractProductFactory

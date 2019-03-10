@@ -42,7 +42,7 @@ namespace Factory
 
             #region Using SimpleFactory
 
-            var productViaSimpleFactory = new SimpleFactory().CreateProduct(productCategory);
+            var productViaSimpleFactory = SimpleFactory.CreateProduct(productCategory);
             Report("Using SimpleFactory", productViaSimpleFactory);
 
             #endregion
@@ -76,13 +76,18 @@ namespace Factory
 
             #region Using abstract factory
 
+            var apf2 = new AbstractProductFactory2(new IaaSFactory());
+            var p2= apf2.CreateProductInstance();
+            Report("Using apf2:", p2);
+
+
             var apf = new MessengerAbstractProductFactory();
             var productViaApf = apf.CreateProductInstance();
             Report("Using Abstract Factory", productViaApf);
 
             #endregion
 
-            CreateAndReportProduct(productCategory);
+            //CreateAndReportProduct(productCategory);
         }
 
         private static void Report(string issuer, Product product)
