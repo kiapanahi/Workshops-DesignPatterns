@@ -52,19 +52,19 @@ namespace Factory
             switch (productCategory)
             {
                 case ProductCategory.Insurance:
-                    productViaFactoryMethod = new InsuranceStore().CreateProduct();
+                    productViaFactoryMethod = new InsuranceFactory().CreateProduct();
                     break;
                 case ProductCategory.Messenger:
-                    productViaFactoryMethod = new MessengerStore().CreateProduct();
+                    productViaFactoryMethod = new MessengerFactory().CreateProduct();
                     break;
                 case ProductCategory.IaaS:
-                    productViaFactoryMethod = new IaaSStore().CreateProduct();
+                    productViaFactoryMethod = new IaaSFactory().CreateProduct();
                     break;
                 case ProductCategory.CreditCalculation:
-                    productViaFactoryMethod = new CreditCalculationStore().CreateProduct();
+                    productViaFactoryMethod = new CreditCalculationFactory().CreateProduct();
                     break;
                 case ProductCategory.Security:
-                    productViaFactoryMethod = new SecurityStore().CreateProduct();
+                    productViaFactoryMethod = new SecurityFactory().CreateProduct();
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
@@ -73,6 +73,11 @@ namespace Factory
 
             #endregion
 
+            #region Using abstract factory
+
+            
+
+            #endregion
 
             CreateAndReportProduct(productCategory);
         }
