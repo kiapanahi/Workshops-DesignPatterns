@@ -33,6 +33,40 @@ namespace Factory
             }
 
             Console.WriteLine($"product: {product.GetType().Name}");
+
+            CreateAndReportProduct(productCategory);
+        }
+
+        private static void CreateAndReportProduct(ProductCategory productCategory)
+        {
+            Console.WriteLine();
+            Console.WriteLine(new string('=',50));
+            Console.WriteLine("\tCreating product somewhere else in application");
+            Product product;
+
+            switch (productCategory)
+            {
+                case ProductCategory.Insurance:
+                    product = new InsuranceProduct();
+                    break;
+                case ProductCategory.Messenger:
+                    product = new GhasedakProduct();
+                    break;
+                case ProductCategory.IaaS:
+                    product = new ArvanCloudProduct();
+                    break;
+                case ProductCategory.CreditCalculation:
+                    product = new AbaciProduct();
+                    break;
+                case ProductCategory.Security:
+                    product = new SejelProduct();
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+
+            Console.WriteLine($"\tproduct: {product.GetType().Name}");
+            Console.WriteLine(new string('=', 50));
         }
 
         private static ProductCategory ShowMenu()
