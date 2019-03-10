@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using Factory.Abstract_Factory;
 using Factory.Factory_Method;
 using Factory.Simple_Factory;
 
@@ -75,7 +76,9 @@ namespace Factory
 
             #region Using abstract factory
 
-            
+            var apf = new MessengerAbstractProductFactory();
+            var productViaApf = apf.CreateProductInstance();
+            Report("Using Abstract Factory", productViaApf);
 
             #endregion
 
