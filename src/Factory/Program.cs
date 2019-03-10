@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using Factory.Simple_Factory;
 
 namespace Factory
 {
@@ -9,8 +10,8 @@ namespace Factory
         {
             var productCategory = ShowMenu();
 
+            #region Naive implementation
             Product product;
-
             switch (productCategory)
             {
                 case ProductCategory.Insurance:
@@ -31,6 +32,11 @@ namespace Factory
                 default:
                     throw new ArgumentOutOfRangeException();
             }
+            #endregion
+
+            #region Using SimpleFactory
+            var productViaSimpleFactory = new SimpleFactory().CreateProduct(productCategory);
+            #endregion
 
             Console.WriteLine($"product: {product.GetType().Name}");
 
@@ -40,10 +46,10 @@ namespace Factory
         private static void CreateAndReportProduct(ProductCategory productCategory)
         {
             Console.WriteLine();
-            Console.WriteLine(new string('=',50));
+            Console.WriteLine(new string('=', 50));
             Console.WriteLine("\tCreating product somewhere else in application");
-            Product product;
 
+            Product product;
             switch (productCategory)
             {
                 case ProductCategory.Insurance:
@@ -64,6 +70,7 @@ namespace Factory
                 default:
                     throw new ArgumentOutOfRangeException();
             }
+
 
             Console.WriteLine($"\tproduct: {product.GetType().Name}");
             Console.WriteLine(new string('=', 50));
