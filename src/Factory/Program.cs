@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Linq;
+using Factory.Abstract_Factory;
+using Factory.Factory_Method;
+using Factory.Simple_Factory;
 
 namespace Factory
 {
@@ -9,8 +12,101 @@ namespace Factory
         {
             var productCategory = ShowMenu();
 
-            Product product;
+            #region Naive implementation
 
+            Product product;
+            switch (productCategory)
+            {
+                case ProductCategory.Insurance:
+                    product = new InsuranceProduct();
+                    break;
+                case ProductCategory.Messenger:
+                    product = new GhasedakProduct();
+                    break;
+                case ProductCategory.IaaS:
+                    product = new ArvanCloudProduct();
+                    break;
+                case ProductCategory.CreditCalculation:
+                    product = new AbaciProduct();
+                    break;
+                case ProductCategory.Security:
+                    product = new SejelProduct();
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+
+            }
+            Report("Naive Method", product);
+
+            #endregion
+
+            #region Using SimpleFactory
+
+            var productViaSimpleFactory = SimpleFactory.CreateProduct(productCategory);
+            Report("Using SimpleFactory", productViaSimpleFactory);
+
+            #endregion
+
+            #region Using factory method
+
+            Product productViaFactoryMethod;
+            switch (productCategory)
+            {
+                case ProductCategory.Insurance:
+                    productViaFactoryMethod = new InsuranceFactory().CreateProduct();
+                    break;
+                case ProductCategory.Messenger:
+                    productViaFactoryMethod = new MessengerFactory().CreateProduct();
+                    break;
+                case ProductCategory.IaaS:
+                    productViaFactoryMethod = new IaaSFactory().CreateProduct();
+                    break;
+                case ProductCategory.CreditCalculation:
+                    productViaFactoryMethod = new CreditCalculationFactory().CreateProduct();
+                    break;
+                case ProductCategory.Security:
+                    productViaFactoryMethod = new SecurityFactory().CreateProduct();
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+            Report("Using FactoryMethod", productViaFactoryMethod);
+
+            #endregion
+
+            #region Using abstract factory
+
+            var apf2 = new AbstractProductFactory2(new IaaSFactory());
+            var p2= apf2.CreateProductInstance();
+            Report("Using apf2:", p2);
+
+
+            var apf = new MessengerAbstractProductFactory();
+            var productViaApf = apf.CreateProductInstance();
+            Report("Using Abstract Factory", productViaApf);
+
+            #endregion
+
+            //CreateAndReportProduct(productCategory);
+        }
+
+        private static void Report(string issuer, Product product)
+        {
+            Console.WriteLine();
+            Console.WriteLine(new string('=', 50));
+            Console.WriteLine($"\t{issuer}");
+            Console.WriteLine($"\tproduct: {product.GetType().Name}");
+            Console.WriteLine(new string('=', 50));
+
+        }
+
+        private static void CreateAndReportProduct(ProductCategory productCategory)
+        {
+            Console.WriteLine();
+            Console.WriteLine(new string('=', 50));
+            Console.WriteLine("\tCreating product somewhere in application");
+
+            Product product;
             switch (productCategory)
             {
                 case ProductCategory.Insurance:
@@ -32,7 +128,9 @@ namespace Factory
                     throw new ArgumentOutOfRangeException();
             }
 
-            Console.WriteLine($"product: {product.GetType().Name}");
+
+            Console.WriteLine($"\tproduct: {product.GetType().Name}");
+            Console.WriteLine(new string('=', 50));
         }
 
         private static ProductCategory ShowMenu()
