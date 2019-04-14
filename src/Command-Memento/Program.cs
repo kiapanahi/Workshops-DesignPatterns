@@ -10,12 +10,16 @@ namespace CommandMemento
         private static void Main()
         {
             var cts = new CancellationTokenSource();
-            cts.CancelAfter(350);
-            var company = new FanapPlus(cts.Token);
+            cts.CancelAfter(750);
+
+
+            ICompany company = new FanapPlus(cts.Token);
+
+            company.Hire(new Person("Kia", "Panahi Rad"));
             company.Hire(new Person("Steve", "Jobs"));
         }
     }
-    
+
     internal interface ICompany
     {
         void Hire(Person person);
@@ -24,48 +28,39 @@ namespace CommandMemento
     internal class FanapPlus : ICompany
     {
         private readonly CancellationToken _cancellation;
-
         private readonly HiringProcedureManager _hiringManager;
 
         public FanapPlus(CancellationToken cancellation)
         {
             _cancellation = cancellation;
-
-            _hiringManager = new HiringProcedureManager(cancellation);
+            _hiringManager = new HiringProcedureManager();
         }
 
         public void Hire(Person person)
         {
-            _hiringManager.StartHiringProcess(person);
-            Console.WriteLine(new string('=', 20));
+            _hiringManager.StartHiringProcess(person, _cancellation);
+            Console.WriteLine(new string('=', 50));
         }
     }
 
     internal class HiringProcedureManager
     {
-        private readonly CancellationToken _cancellation;
-
-        public HiringProcedureManager(CancellationToken cancellation)
-        {
-            _cancellation = cancellation;
-        }
-
-        public void StartHiringProcess(Person person)
+        public void StartHiringProcess(Person person, CancellationToken cancellation)
         {
             var undoList = new Stack<ICommand>();
 
             var procedure = new List<ICommand>
             {
-                new CreateProfileCommand(person, _cancellation),
-                new CreateEmailCommand(person, _cancellation),
-                new AssemblePcCommand(person, _cancellation),
-                new ConnectToNetworkCommand(person, _cancellation),
-                new IntroduceToOthersCommand(person, _cancellation)
+                new CreateProfileCommand(person, cancellation),
+                new CreateEmailCommand(person, cancellation),
+                new AssemblePcCommand(person, cancellation),
+                new ConnectToNetworkCommand(person, cancellation),
+                new IntroduceToOthersCommand(person, cancellation)
             };
 
             foreach (var step in procedure)
             {
-                if (!_cancellation.IsCancellationRequested)
+                if (!cancellation.IsCancellationRequested)
                 {
                     step.Execute();
                     undoList.Push(step);
@@ -76,7 +71,7 @@ namespace CommandMemento
                 }
             }
 
-            if (_cancellation.IsCancellationRequested)
+            if (cancellation.IsCancellationRequested)
             {
                 while (undoList.Count > 0)
                 {
