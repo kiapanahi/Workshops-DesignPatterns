@@ -5,6 +5,7 @@
 		}
 	],
 	"settings": {
+		"omnisharp.loggingLevel": "error",
 		"files.exclude": {
 			"**/.git": true,
 			"**/.svn": true,
